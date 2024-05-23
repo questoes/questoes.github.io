@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão Interativa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin-bottom: 10px;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 5px;
+        }
+        .result {
+            font-weight: bold;
+        }
+        .summary {
+            margin-top: 20px;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("9Fv8_Zlr7KGvuBufu"); // Substitua YOUR_USER_ID pelo seu User ID do EmailJS
+        })();
+    </script>
+</head>
+<body>
+
+    <div class="question">
+        <h3>Questão 1</h3>
+        <p>Sobre as características gerais das tribos germânicas na ocasião de seus primeiros contatos com os romanos, no séc. I a.C., assinale a afirmação incorreta:</p>
+        <ul class="options">
+            <li><input type="radio" name="q1" value="A"> A) A propriedade privada era desconhecida, mas os rebanhos eram privados.</li>
+            <li><input type="radio" name="q1" value="B"> B) Essas tribos já estavam organizadas em Estados monárquicos.</li>
+            <li><input type="radio" name="q1" value="C"> C) Os líderes dos clãs determinavam qual parte do solo comum deveria ser cultivada e as distribuíam entre as famílias.</li>
+            <li><input type="radio" name="q1" value="D"> D) Só se estabelecia chefes absolutos em tempos de guerra.</li>
+            <li><input type="radio" name="q1" value="E"> E) Muitos dos clãs ainda eram matrilineares.</li>
+        </ul>
+        <p class="result" id="result1"></p>
+    </div>
+
+    <div>
+        <label for="studentName">Nome do Aluno:</label>
+        <input type="text" id="studentName" name="studentName">
+    </div>
+   
+    <div>
+        <label for="studentClass">Turma do Aluno:</label>
+        <input type="text" id="studentClass" name="studentClass">
+    </div>
+ <div>
+        <label for="studentEmail">Email do Aluno:</label>
+        <input type="email" id="studentEmail" name="studentEmail">
+    </div>
+    <button onclick="checkAnswers()">Verificar Respostas</button>
+    <button onclick="sendEmail()">Enviar Resultado</button>
+
+    <div class="summary">
+        <p>Total de questões: <span id="total-questions"></span></p>
+        <p>Respostas corretas: <span id="correct-answers"></span></p>
+        <p>Percentual de acertos: <span id="percentage"></span>%</p>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            var correctAnswers = {
+                q1: 'B'
+            };
+
+            var totalQuestions = 0;
+            var correctCount = 0;
+
+            for (var q in correctAnswers) {
+                var options = document.getElementsByName(q);
+                totalQuestions++;
+                var answeredCorrectly = false;
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i].checked) {
+                        var resultElement = document.getElementById('result' + q.slice(-1));
+                        if (options[i].value === correctAnswers[q]) {
+                            resultElement.textContent = 'Correto!';
+                            resultElement.style.color = 'green';
+                            correctCount++;
+                            answeredCorrectly = true;
+                        } else {
+                            resultElement.textContent = 'Incorreto!';
+                            resultElement.style.color = 'red';
+                        }
+                    }
+                }
+                if (!answeredCorrectly) {
+                    for (var i = 0; i < options.length; i++) {
+                        if (options[i].value === correctAnswers[q]) {
+                            options[i].parentNode.style.color = 'green';
+                            options[i].parentNode.style.fontWeight = 'bold';
+                        }
+                    }
+                }
+            }
+
+            var percentage = (correctCount / totalQuestions) * 100;
+
+            document.getElementById('total-questions').textContent = totalQuestions;
+            document.getElementById('correct-answers').textContent = correctCount;
+            document.getElementById('percentage').textContent = percentage.toFixed(2);
+        }
+
+        function sendEmail() {
+            var studentName = document.getElementById('studentName').value;
+            var studentEmail = document.getElementById('studentEmail').value;
+            var studentClass = document.getElementById('studentClass').value;
+            var totalQuestions = document.getElementById('total-questions').textContent;
+            var correctAnswers = document.getElementById('correct-answers').textContent;
+            var percentage = document.getElementById('percentage').textContent;
+
+            var templateParams = {
+                student_name: studentName,
+                student_email: studentEmail,
+                student_class: studentClass,
+                total_questions: totalQuestions,
+                correct_answers: correctAnswers,
+                percentage: percentage
+            };
+
+            emailjs.send('service_x2nkc4p', 'template_jw12zn6', templateParams)
+                .then(function(response) {
+                    alert('Email enviado com sucesso!', response.status, response.text);
+                }, function(error) {
+                    alert('Falha no envio do email.', error);
+                });
+        }
+    </script>
+
+</body>
+</html>
