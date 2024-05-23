@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão Interativa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin-bottom: 10px;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 5px;
+        }
+        .result {
+            font-weight: bold;
+        }
+        .summary {
+            margin-top: 20px;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("9Fv8_Zlr7KGvuBufu"); // Substitua YOUR_USER_ID pelo seu User ID do EmailJS
+        })();
+    </script>
+</head>
+<body>
+
+    <div class="question">
+        <h3>Questão 1</h3>
+        <p>Na obra Piaget, Vygotsky, Wallon: teorias psicogenéticas em discussão, De La Taille (In: De La Taille; Oliveira e Dantas, 1992) afirma que para Piaget, o homem não é social da mesma maneira aos seis meses ou aos vinte anos. No entendimento de De La Taille (1992), Piaget defende que a socialização da inteligência só começa:</p>
+        <ul class="options">
+            <li><input type="radio" name="q1" value="A"> A) com as operações mentais superiores.</li>
+            <li><input type="radio" name="q1" value="B"> B) a partir da aquisição da linguagem.</li>
+            <li><input type="radio" name="q1" value="C"> C) no estágio das operações formais.</li>
+            <li><input type="radio" name="q1" value="D"> D) no estágio operatório concreto.</li>
+            <li><input type="radio" name="q1" value="E"> E) no estágio sensório-motor.</li>
+        </ul>
+        <p class="result" id="result1"></p>
+    </div>
+
+    <div class="question">
+        <h3>Questão 2</h3>
+        <p>Em uma perspectiva construtivista, segundo Coll (1999), é correto afirmar que:</p>
+        <ul class="options">
+            <li><input type="radio" name="q2" value="A"> A) a aprendizagem é a aquisição de respostas adequadas, graças a um processo de reforços positivos ou negativos regulados pelos professores.</li>
+            <li><input type="radio" name="q2" value="B"> B) a aprendizagem consiste em adquirir os conhecimentos relevantes de uma cultura, de modo que o conhecimento se torne uma réplica interna da informação externa.</li>
+            <li><input type="radio" name="q2" value="C"> C) o professor é um especialista que conhece a fundo a matéria objeto de estudo e que exerce um bom controle da conduta dos alunos da classe.</li>
+            <li><input type="radio" name="q2" value="D"> D) os alunos são construtores ativos e não seres reativos, e o professor é participante ativo também, realmente se ocupando em ensinar-lhes a construir conhecimentos.</li>
+            <li><input type="radio" name="q2" value="E"> E) o resultado de aprender as disciplinas formais deve ser uma mente regida por critérios de lógica, objetividade, coerência interna e método.</li>
+        </ul>
+        <p class="result" id="result2"></p>
+    </div>
+
+    <div class="question">
+        <h3>Questão 3</h3>
+        <p>Onrubia (in: Coll, 1999), fundamentado na pesquisa de Vygotski, afirma que ensinar é:</p>
+        <ul class="options">
+            <li><input type="radio" name="q3" value="A"> A) compreender os estágios de desenvolvimento da criança.</li>
+            <li><input type="radio" name="q3" value="B"> B) criar zonas de desenvolvimento proximal e intervir nelas.</li>
+            <li><input type="radio" name="q3" value="C"> C) ter a oportunidade de repetir experiência e aprimorar a aprendizagem.</li>
+            <li><input type="radio" name="q3" value="D"> D) provocar a desequilibração para buscar novas acomodações.</li>
+            <li><input type="radio" name="q3" value="E"> E) atuar nas zonas de desenvolvimento real, a partir da vivência do aluno.</li>
+        </ul>
+        <p class="result" id="result3"></p>
+    </div>
+
+    <div class="question">
+        <h3>Questão 4</h3>
+        <p>Segundo Libâneo (2013), a função social da escola e o compromisso ético e social do educador envolvem:</p>
+        <ul class="options">
+            <li><input type="radio" name="q4" value="A"> A) Promover a transmissão de valores culturais e a preparação para a vida produtiva.</li>
+            <li><input type="radio" name="q4" value="B"> B) Priorizar o desenvolvimento integral do aluno, compreendendo o ensino como um processo contínuo.</li>
+            <li><input type="radio" name="q4" value="C"> C) Garantir a equidade e o respeito às diversidades presentes no contexto escolar.</li>
+            <li><input type="radio" name="q4" value="D"> D) Atuar como agente de transformação social, desenvolvendo a consciência crítica nos alunos.</li>
+            <li><input type="radio" name="q4" value="E"> E) Todas as alternativas estão corretas.</li>
+        </ul>
+        <p class="result" id="result4"></p>
+    </div>
+
+    <div class="question">
+        <h3>Questão 5</h3>
+        <p>No que diz respeito à Ordem Social, e conforme dispõe a Constituição Federal, pode-se afirmar corretamente que:</p>
+        <ul class="options">
+            <li><input type="radio" name="q5" value="A"> A) o acesso ao ensino obrigatório e gratuito é um direito privado de cada cidadão.</li>
+            <li><input type="radio" name="q5" value="B"> B) as atividades universitárias de pesquisa e extensão poderão receber apoio financeiro do Poder Público.</li>
+            <li><input type="radio" name="q5" value="C"> C) a educação infantil é responsabilidade exclusiva dos municípios.</li>
+            <li><input type="radio" name="q5" value="D"> D) a União, os Estados, o Distrito Federal e os Municípios devem atuar de forma integrada e colaborativa para garantir o direito à educação.</li>
+            <li><input type="radio" name="q5" value="E"> E) a aplicação dos recursos destinados à educação é responsabilidade apenas dos governos estaduais.</li>
+        </ul>
+        <p class="result" id="result5"></p>
+    </div>
+
+    <div>
+        <label for="studentName">Nome do Aluno:</label>
+        <input type="text" id="studentName" name="studentName" required>
+    </div>
+   
+    <div>
+        <label for="studentClass">Turma do Aluno:</label>
+        <input type="text" id="studentClass" name="studentClass" required>
+    </div>
+    <div>
+        <label for="studentEmail">Email do Aluno:</label>
+        <input type="email" id="studentEmail" name="studentEmail" required>
+    </div>
+    <button onclick="saveAnswers()">Salvar Respostas</button>
+    <button onclick="enableEditing()" disabled id="editAnswersButton">Alterar Respostas</button>
+    <button onclick="sendEmail()" disabled id="sendEmailButton">Enviar Resultado</button>
+
+    <div class="summary">
+        <p>Total de questões: <span id="total-questions"></span></p>
+        <p>Respostas corretas: <span id="correct-answers"></span></p>
+        <p>Percentual de acertos: <span id="percentage"></span>%</p>
+        <p>Nota total: <span id="total-score"></span></p>
+    </div>
+
+    <script>
+        var savedAnswers = {};
+        var correctAnswers = {
+            q1: 'B',
+            q2: 'D',
+            q3: 'B',
+            q4: 'E',
+            q5: 'B'
+        };
+
+        function saveAnswers() {
+            var questions = document.querySelectorAll('.question');
+            questions.forEach((question, index) => {
+                var options = question.querySelectorAll('input[type="radio"]');
+                options.forEach(option => {
+                    if (option.checked) {
+                        savedAnswers['q' + (index + 1)] = option.value;
+                    }
+                });
+                options.forEach(option => option.disabled = true);
+            });
+            document.getElementById('sendEmailButton').disabled = false;
+            document.getElementById('editAnswersButton').disabled = false;
+            alert('Respostas salvas! Você pode revisar e alterar suas respostas antes de enviar. Após o envio, não será mais possível modificar.');
+        }
+
+        function enableEditing() {
+            var questions = document.querySelectorAll('.question');
+            questions.forEach((question) => {
+                var options = question.querySelectorAll('input[type="radio"]');
+                options.forEach(option => option.disabled = false);
+            });
+            document.getElementById('sendEmailButton').disabled = true;
+            document.getElementById('editAnswersButton').disabled = true;
+        }
+
+        function calculateResults() {
+            var totalQuestions = Object.keys(correctAnswers).length;
+            var correctCount = 0;
+
+            for (var q in correctAnswers) {
+                var resultElement = document.getElementById('result' + q.slice(-1));
+                if (savedAnswers[q] === correctAnswers[q]) {
+                    resultElement.textContent = 'Correto!';
+                    resultElement.style.color = 'green';
+                    correctCount++;
+                } else {
+                    resultElement.textContent = 'Incorreto!';
+                    resultElement.style.color = 'red';
+                }
+            }
+
+            var percentage = (correctCount / totalQuestions) * 100;
+            var score = (correctCount / totalQuestions) * 10;
+
+            document.getElementById('total-questions').textContent = totalQuestions;
+            document.getElementById('correct-answers').textContent = correctCount;
+            document.getElementById('percentage').textContent = percentage.toFixed(2);
+            document.getElementById('total-score').textContent = score.toFixed(1);
+
+            return {
+                totalQuestions: totalQuestions,
+                correctCount: correctCount,
+                percentage: percentage.toFixed(2),
+                score: score.toFixed(1)
+            };
+        }
+
+        function validateEmail(email) {
+            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function sendEmail() {
+            var studentName = document.getElementById('studentName').value;
+            var studentEmail = document.getElementById('studentEmail').value;
+            var studentClass = document.getElementById('studentClass').value;
+
+            if (!studentName || !studentClass || !studentEmail) {
+                alert("Todos os campos de identificação devem ser preenchidos.");
+                return;
+            }
+
+            if (!validateEmail(studentEmail)) {
+                alert("Por favor, insira um email válido.");
+                return;
+            }
+
+            var results = calculateResults();
+
+            var templateParams = {
+                student_name: studentName,
+                student_email: studentEmail,
+                student_class: studentClass,
+                total_questions: results.totalQuestions,
+                correct_answers: results.correctCount,
+                percentage: results.percentage,
+                total_score: results.score,
+                saved_answers: JSON.stringify(savedAnswers)
+            };
+
+            emailjs.send('service_x2nkc4p', 'template_jw12zn6', templateParams)
+                .then(function(response) {
+                    alert('Email enviado com sucesso!', response.status, response.text);
+                }, function(error) {
+                    alert('Falha no envio do email.', error);
+                });
+        }
+    </script>
+
+</body>
+</html>
