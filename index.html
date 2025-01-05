@@ -48,15 +48,22 @@
       border-radius: 5px;
     }
 
+    /* Botão "Não" */
     #btnNao {
       background: #f44336;
       color: #fff;
     }
 
+    /* Botão "Sim" inicialmente sem position:absolute (para ficar alinhado) */
     #btnSim {
-      position: absolute; /* Permitirá mover o botão pela tela */
       background: #4caf50;
       color: #fff;
+    }
+
+    /* Classe que será adicionada em tempo de execução,
+       transformando o botão "Sim" em position:absolute */
+    .mover {
+      position: absolute;
     }
 
     /* Popups */
@@ -79,6 +86,40 @@
       max-width: 300px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
+
+    /* -----------------------------
+       OTIMIZAÇÃO PARA TELAS MÓVEIS
+       ----------------------------- */
+    @media (max-width: 600px) {
+      body {
+        height: auto; 
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.6em;
+        margin: 15px 0;
+      }
+
+      #countdownContainer {
+        font-size: 1em;
+        margin-bottom: 15px;
+      }
+
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      button {
+        width: 100%;
+        max-width: 250px;
+      }
+
+      .popup {
+        max-width: 90%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -93,9 +134,9 @@
 
   <!-- Seção de botões -->
   <div class="buttons">
-    <button id="btnNao">Não</button>
-    <!-- O botão Sim está posicionado de forma absoluta para poder 'fugir' -->
+    <!-- "Sim" aparece primeiro e alinhado ao carregar -->
     <button id="btnSim">Sim</button>
+    <button id="btnNao">Não</button>
   </div>
 
   <!-- Popup para o clique em "Não" -->
@@ -121,6 +162,7 @@
     let intervalo;
     let intervaloRedirect;
     let posXMax, posYMax; // para manter limites do botão 'Sim'
+    let botaoJaMovendo = false; // Flag para verificar se já transformamos o "Sim" em absolute
 
     // Obtém referências dos elementos
     const countdownEl = document.getElementById('countdown');
@@ -176,9 +218,15 @@
     }
 
     // Faz o botão "Sim" se mover para uma posição aleatória dentro da janela
+    // Se ainda não estiver em position:absolute, aplica esse estilo primeiro.
     function moverBotaoSim() {
+      // Se o botão "Sim" ainda não está "absoluto", transformamos agora.
+      if (!botaoJaMovendo) {
+        btnSim.classList.add('mover');
+        botaoJaMovendo = true;
+      }
+
       // Calcula a região útil para o botão
-      //  - Considerar tamanho do botão para que não saia da tela
       const btnWidth = btnSim.offsetWidth;
       const btnHeight = btnSim.offsetHeight;
       posXMax = window.innerWidth - btnWidth - 10;  // 10 px de margem de segurança
@@ -188,6 +236,7 @@
       const randomX = Math.floor(Math.random() * posXMax);
       const randomY = Math.floor(Math.random() * posYMax);
 
+      // Aplica a posição obtida
       btnSim.style.left = randomX + 'px';
       btnSim.style.top = randomY + 'px';
     }
@@ -202,14 +251,14 @@
     // Assim que o mouse se aproxima ou tenta clicar, o botão "Sim" se move
     btnSim.addEventListener('mouseover', moverBotaoSim);
     btnSim.addEventListener('focus', moverBotaoSim);
-    btnSim.addEventListener('click', moverBotaoSim); 
-    // Mesmo no clique, antes de dar tempo de acionar, ele já se move
+    btnSim.addEventListener('click', moverBotaoSim);
 
     // Inicia a contagem quando a página carrega
     window.onload = () => {
       iniciarContagem();
-      // Posiciona o botão "Sim" inicialmente
-      moverBotaoSim();
+      // Observação: não chamamos moverBotaoSim() aqui
+      // para que, ao carregar a página, o botão continue 
+      // alinhado na mesma fila do "Não".
     };
   </script>
 </body>
